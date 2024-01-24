@@ -1,5 +1,8 @@
 let fs = require("node:fs");
 const readline = require("readline");
+const path = require("path");
+
+const pathToFile = path.join(__dirname, "text.txt");
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -11,7 +14,7 @@ function sendFarewell() {
   process.exit(0);
 }
 
-fs.appendFile("file.txt", "", err => {
+fs.appendFile(pathToFile, "", err => {
   if (err) {
     console.error(err);
   }
@@ -22,7 +25,7 @@ rl.on("line", line => {
   if (line.toLowerCase() === "exit") {
     sendFarewell();
   }
-  fs.appendFile('file.txt', line, err => {
+  fs.appendFile(pathToFile, line, err => {
     if (err) {
       console.error(err);
     }
